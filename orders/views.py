@@ -110,6 +110,8 @@ class CartView(View):
             order = Order.objects.get(user_id=user.id, tatus_id=IN_CART_STATUS_ID)
             order.cart_set.filter(product_id=data['id']).update(count=data['count'])
 
+            return JsonResponse({'MESSAGE' : 'SUCCESS'}, status=201)
+
         except KeyError:
             return JsonResponse({'MESSAGE' : 'KEY_ERROR'}, status=400)
         except ValueError:
